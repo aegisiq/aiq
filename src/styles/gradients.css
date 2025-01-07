@@ -1,0 +1,42 @@
+@layer utilities {
+  .bg-gradient-section {
+    @apply bg-gradient-to-b from-[#030014] via-[#030014]/90 to-[#030014];
+  }
+
+  .bg-gradient-overlay {
+    @apply bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.08),transparent_50%)];
+  }
+
+  .bg-gradient-hero {
+    @apply bg-[linear-gradient(to_bottom,rgba(3,0,20,0.7),rgba(3,0,20,0.85))];
+  }
+
+  .bg-gradient-card {
+    @apply bg-gradient-to-b from-purple-900/10 to-[#030014]/50;
+  }
+
+  .bg-gradient-glow {
+    @apply bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.15),transparent_70%)];
+  }
+
+  .bg-gradient-section-top {
+    @apply bg-gradient-to-b from-[#030014] to-[#030014]/95;
+  }
+
+  .bg-gradient-section-bottom {
+    @apply bg-gradient-to-b from-[#030014]/95 to-[#030014];
+  }
+
+  .bg-gradient-hover {
+    @apply transition-all duration-300 ease-in-out;
+    background-size: 200% 200%;
+    @apply bg-[linear-gradient(to_right,#030014,rgba(3,0,20,0.7),#030014)];
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}

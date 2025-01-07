@@ -1,0 +1,12 @@
+.cursorShadow {
+  width: 60px; /* Larger shadow for broader effect */
+  height: 60px; /* Matching height to width for a consistent circle */
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-26px, -26px); /* Correctly center the shadow under the cursor */
+  filter: blur(20px); /* Increased blur for a softer shadow */
+  transition: transform 0.15s ease-out;
+  background: radial-gradient(circle, rgba(184, 36, 255, 0.6) 0%, rgba(40, 1, 55, 0.3) 80%, rgba(40, 1, 55, 0) 100%);
+}
