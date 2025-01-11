@@ -14,15 +14,16 @@
   width: 100%;
 }
 
-.letter {
-  font-size: clamp(4.5rem, 20vw, 20rem);
-  font-weight: 800;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
-  letter-spacing: -0.05em;
-  cursor: default;
+.letter, .letterA {
+    font-family: 'Libre', sans-serif; /* Use Mulish, and fall back to generic sans-serif if unavailable */
+    font-size: clamp(4.5rem, 20vw, 20rem);
+    font-weight: 800;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    letter-spacing: -0.05em;
+    cursor: default;
 }
 
 .letter:hover {

@@ -57,8 +57,8 @@ export default function ContactSection() {
   };
 
   return (
-    <SectionTransition id="contact" className="py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionTransition className="py-24">
+      <div id="contact" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> {/* Moved id="contact" here */}
         <div className="max-w-xl mx-auto text-center mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

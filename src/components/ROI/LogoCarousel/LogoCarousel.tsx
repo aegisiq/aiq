@@ -11,7 +11,7 @@ export default function LogoCarousel() {
 
     let animationId: number;
     let startTime: number;
-    const duration = 15000; // 4 seconds per scroll
+    const duration = 20000; // 15 seconds per scroll
     const pixelsPerSecond = carousel.scrollWidth / (duration / 1000);
 
     const animate = (timestamp: number) => {
@@ -52,7 +52,7 @@ export default function LogoCarousel() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="relative overflow-hidden bg-black/10 backdrop-blur-sm rounded-xl"
+        className="relative overflow-hidden bg-white/5 backdrop-blur-sm rounded-xl"
       >
         <div
           ref={carouselRef}
@@ -66,7 +66,7 @@ export default function LogoCarousel() {
               <img
                 src={logo.url}
                 alt={logo.name}
-                className="h-12 w-auto object-contain filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                className="h-12 w-auto object-contain hover:brightness-110 transition-all duration-300"
                 loading="lazy"
               />
             </div>

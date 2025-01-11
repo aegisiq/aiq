@@ -3,7 +3,7 @@ import { Review } from './types';
 export const reviews: Review[] = [
   {
     company: 'TechFlow Systems',
-    logo: 'https://images.unsplash.com/photo-1549421263-5ec394a5ad4c?w=100&h=100&fit=crop',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/National_Health_Service_%28England%29_logo.svg',
     content: 'The AI automation platform has revolutionized our workflow. Tasks that took hours are now completed in minutes.',
     result: 'Saved 30+ hours/week'
   },

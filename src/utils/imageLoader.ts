@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface ImageLoaderOptions {
   root?: Element | null;
@@ -6,9 +6,22 @@ interface ImageLoaderOptions {
   threshold?: number | number[];
 }
 
+export function useProgressiveImage(src: string, placeholder: string = '') {
+  const [sourceLoaded, setSourceLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => setSourceLoaded(true);
+  }, [src]);
+
+  return sourceLoaded ? src : placeholder;
+}
+
 export function useImageLoader(options: ImageLoaderOptions = {}) {
   const imageRef = useRef<HTMLImageElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -17,40 +30,25 @@ export function useImageLoader(options: ImageLoaderOptions = {}) {
         const src = img.getAttribute('data-src');
         
         if (src) {
-          img.src = src;
-          img.onload = () => setIsLoaded(true);
+          const tempImg = new Image();
+          tempImg.onload = () => {
+            img.src = src;
+            setIsLoaded(true);
+          };
+          tempImg.onerror = () => setError(true);
+          tempImg.src = src;
         }
         
         observer.unobserve(img);
       }
-    }, options);
+    }, { rootMargin: '50px', ...options });
 
     if (imageRef.current) {
       observer.observe(imageRef.current);
     }
 
-    return () => {
-      if (imageRef.current) {
-        observer.unobserve(imageRef.current);
-      }
-    };
+    return () => observer.disconnect();
   }, [options]);
 
-  return { imageRef, isLoaded };
-}
-
-export function generateSrcSet(url: string): string {
-  const sizes = [320, 640, 768, 1024, 1280];
-  return sizes
-    .map(size => `${getOptimizedImageUrl(url, size)} ${size}w`)
-    .join(', ');
-}
-
-function getOptimizedImageUrl(url: string, width: number): string {
-  // Add WebP support and width parameter to Unsplash URLs
-  if (url.includes('unsplash.com')) {
-    const separator = url.includes('?') ? '&' : '?';
-    return `${url}${separator}w=${width}&fm=webp&q=80`;
-  }
-  return url;
+  return { imageRef, isLoaded, error };
 }

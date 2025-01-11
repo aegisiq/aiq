@@ -5,7 +5,7 @@ import ProcessBackground from './Background/ProcessBackground';
 
 export default function ProcessSection() {
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section id="process" className="relative py-24 overflow-hidden">
       <ProcessBackground />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

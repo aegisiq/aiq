@@ -7,28 +7,29 @@ const links = [
   { href: '#process', label: 'Process' },
   { href: '#roi', label: 'ROI' },
   { href: '#pricing', label: 'Pricing' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#contact', label: 'Contact' }
 ];
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  
-  const closeMenu = () => setIsOpen(false);
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false); // Close menu after clicking
+    }
+  };
 
   return (
     <div className="md:hidden">
       <button
-        onClick={toggleMenu}
+        onClick={() => setIsOpen(!isOpen)}
         className="p-2 text-gray-400 hover:text-white transition-colors"
         aria-label="Toggle menu"
       >
-        {isOpen ? (
-          <X className="w-6 h-6" />
-        ) : (
-          <Menu className="w-6 h-6" />
-        )}
+        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
       <AnimatePresence>
@@ -39,7 +40,7 @@ export default function MobileMenu() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
-              onClick={closeMenu}
+              onClick={() => setIsOpen(false)}
             />
             
             <motion.nav
@@ -54,7 +55,7 @@ export default function MobileMenu() {
                   <a
                     key={href}
                     href={href}
-                    onClick={closeMenu}
+                    onClick={(e) => scrollToSection(e, href)}
                     className="text-lg text-gray-400 hover:text-white transition-colors py-2"
                   >
                     {label}

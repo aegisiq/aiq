@@ -5,8 +5,8 @@ import SectionTransition from '../Layout/SectionTransition';
 
 export default function ROISection() {
   return (
-    <SectionTransition id="roi" className="py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionTransition className="py-24">
+      <div id="roi" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> {/* Moved id="roi" here */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Calculate Your ROI
